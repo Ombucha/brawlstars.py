@@ -1,5 +1,5 @@
 brawlstars.py
-===========
+=============
 
 .. image:: https://img.shields.io/github/license/Infiniticity/brawlstars.py
     :target: https://github.com/Infiniticity/brawlstars.py/blob/main/LICENSE
@@ -54,7 +54,6 @@ Quick Example
 
     client = bs.Client("token")
 
-
     player = client.get_player("#9PPUP2CJ")
     print(player.trophies)
     print(player.team_victories)
@@ -77,7 +76,7 @@ Quick Example
     battles = client.get_battle_logs("UL0GCC8")
     print(battles[0].battle.mode)
 
-More examples can be viewed in the `examples /examples`_
+More examples can be viewed in the `examples <https://github.com/Infiniticity/brawlstars.py/tree/main/examples>`_ folder.
 
 
 Links
