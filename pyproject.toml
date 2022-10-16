@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "brawlstars.py"
+version = "1.0.0"
+description = "A basic API wrapper for Brawl Stars."
+authors = ["Infiniticity <omkaar.nerurkar@gmail.com>"]
+license = "MIT"
+readme = "README.rst"
+repository = "https://github.com/Infiniticity/brawlstars.py/"
+documentation = "https://brawlstars.readthedocs.io/"
+keywords = ["python", "brawl stars"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+packages = ["brawlstars"]
+
+[tool.poetry.dependencies]
+requests = "2.28.*"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Infiniticity/brawlstars.py/issues"
