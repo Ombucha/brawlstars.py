@@ -28,7 +28,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from urllib.parse import quote
 
-from .exceptions import ForbiddenError, RateLimitError, UnknownError, MaintenanceError
+from .exceptions import ForbiddenError, RateLimitError, UnknownError, MaintenanceError, ResourceNotFoundError
 
 if TYPE_CHECKING:
     from .client import Client
@@ -38,6 +38,8 @@ def _fetch(url: str, client: Client, params: dict = None) -> dict:
     response = client.session.get(f"https://{quote(url)}", headers = client.session.headers, params = params)
     if response.status_code == 403:
         raise ForbiddenError("access denied, either because of missing/incorrect credentials or the used API token does not grant access to the requested resource.")
+    if response.status_code == 404:
+        raise ResourceNotFoundError("resource was not found.")
     if response.status_code == 429:
         raise RateLimitError("request was throttled, because amount of requests was above the threshold defined for the used API token.")
     if response.status_code == 500:
@@ -53,4 +55,3 @@ def _difference(list_1: list, list_2: list) -> list:
         if element not in list_2:
             result.append(element)
     return result
-    

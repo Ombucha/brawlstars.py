@@ -71,6 +71,15 @@ class MaintenanceError(BrawlStarsException):
     pass
 
 
+class ResourceNotFoundError(BrawlStarsException):
+
+    """
+    An exception that is raised when the resource is not found.
+    """
+
+    pass
+
+
 class UncallableError(BrawlStarsException):
 
     """

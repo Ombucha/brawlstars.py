@@ -127,7 +127,7 @@ class Client:
         """
         if before and after:
             raise ValueError("both 'before' and 'after' cannot be provided.")
-        data = _fetch(f"{BASE_URL}rankings/{country}", self, {"before": before, "after": after, "limit": limit})
+        data = _fetch(f"{BASE_URL}rankings/{country}/players", self, {"before": before, "after": after, "limit": limit})
         return PlayerRanking(data)
 
     def get_brawler_rankings(self, country: str, brawler_id: int, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> PlayerRanking:

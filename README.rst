@@ -63,17 +63,17 @@ Quick Example
         members = client.get_club_members(club.tag)
 
         best_player = max(members, key = lambda member: member.trophies)
-        print(best_player.name, f"- best_player.trophies 🏆")
+        print(best_player.name, f"- {best_player.trophies} 🏆")
 
     player_rankings = client.get_player_rankings("global", limit = 5)
-    for player in player_ranking:
+    for player in player_rankings:
         print(f"{player.rank}. {player.name}")
 
-    brawler_rankings = client.get_brawler_rankings(region = "us", limit = 10, brawler = "edgar")
+    brawler_rankings = client.get_brawler_rankings("us", 16000043, limit = 10)
     for player in brawler_rankings:
         print(f"{player.rank}. {player.name}")
 
-    battles = client.get_battle_logs("UL0GCC8")
+    battles = client.get_player_battlelog("#JGCCGY80")
     print(battles[0].battle.mode)
 
 More examples can be viewed in the `examples <https://github.com/Infiniticity/brawlstars.py/tree/main/examples>`_ folder.
