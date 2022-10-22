@@ -62,7 +62,7 @@ class BrawlStarsObject:
 class Battlelog:
 
     """
-    A class that represents a player's battlelog
+    A class that represents a player's battlelog.
     """
 
     def __init__(self, _data: dict) -> None:

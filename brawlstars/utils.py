@@ -25,7 +25,7 @@ SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import Union, TYPE_CHECKING
 from urllib.parse import quote
 
 from .exceptions import ForbiddenError, RateLimitError, UnknownError, MaintenanceError, ResourceNotFoundError
@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from .client import Client
 
 
-def _fetch(url: str, client: Client, params: dict = None) -> dict:
+def _fetch(url: str, client: Client, params: dict = None) -> Union[list, dict]:
     response = client.session.get(f"https://{quote(url)}", headers = client.session.headers, params = params)
     if response.status_code == 403:
         raise ForbiddenError("access denied, either because of missing/incorrect credentials or the used API token does not grant access to the requested resource.")
