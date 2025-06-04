@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2022 Omkaar
+Copyright (c) 2025 Omkaar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,8 @@ if TYPE_CHECKING:
 
 def _fetch(url: str, client: Client, params: dict = None) -> Union[list, dict]:
     response = client.session.get(f"https://{quote(url)}", headers = client.session.headers, params = params)
+    if response.status_code == 400:
+        raise ValueError("the request was malformed, e.g. a required parameter was missing or had an invalid value.")
     if response.status_code == 403:
         raise ForbiddenError("access denied, either because of missing/incorrect credentials or the used API token does not grant access to the requested resource.")
     if response.status_code == 404:

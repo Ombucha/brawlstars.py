@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2022 Omkaar
+Copyright (c) 2025 Omkaar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -70,9 +70,8 @@ class Battlelog:
 
     def __getitem__(self, index: int) -> BrawlStarsObject:
         item = self._data["items"][index]
-        battle_time = item.pop("battleTime")
         battle = BrawlStarsObject(item)
-        battle.battle_time = datetime.strptime(battle_time, "%Y%m%dT%H%M%S.%fZ")
+        battle.battle_time = datetime.strptime(item.pop("battleTime"), "%Y%m%dT%H%M%S.%fZ")
         return battle
 
     def __iter__(self) -> Iterator:
@@ -112,9 +111,8 @@ class ClubMemberList:
 
     def __getitem__(self, index: int) -> BrawlStarsObject:
         item = self._data["items"][index]
-        name_color = item.pop("nameColor")
         member = BrawlStarsObject(item)
-        member.name_color = hex(int(name_color, 16))
+        member.name_color = hex(int(item.pop("nameColor"), 16))
         return member
 
     def __iter__(self) -> Iterator:
@@ -139,9 +137,8 @@ class PlayerRanking:
 
     def __getitem__(self, index: int) -> BrawlStarsObject:
         item = self._data["items"][index]
-        name_color = item.pop("nameColor")
         player = BrawlStarsObject(item)
-        player.name_color = hex(int(name_color, 16))
+        player.name_color = hex(int(item.pop("nameColor"), 16))
         return player
 
 
@@ -169,23 +166,9 @@ class PowerPlaySeasonList:
 
     def __getitem__(self, index: int) -> BrawlStarsObject:
         item = self._data["items"][index]
-        start_time, end_time = item.pop("startTime"), item.pop("endTime")
         season = BrawlStarsObject(item)
-        season.start_time, season.end_time = datetime.strptime(start_time, "%Y%m%dT%H%M%S.%fZ"), datetime.strptime(end_time, "%Y%m%dT%H%M%S.%fZ")
+        season.start_time, season.end_time = datetime.strptime(item.pop("startTime"), "%Y%m%dT%H%M%S.%fZ"), datetime.strptime(item.pop("endTime"), "%Y%m%dT%H%M%S.%fZ")
         return season
-
-
-class BrawlerList:
-
-    """
-    A class that represents a list of brawlers.
-    """
-
-    def __init__(self, _data: dict) -> None:
-        self._data = _data
-
-    def __getitem__(self, index: int) -> BrawlStarsObject:
-        return BrawlStarsObject(self._data["items"][index])
 
 
 class EventList:
@@ -199,7 +182,6 @@ class EventList:
 
     def __getitem__(self, index: int) -> BrawlStarsObject:
         item = self._data[index]
-        start_time, end_time = item.pop("startTime"), item.pop("endTime")
         event = BrawlStarsObject(item)
-        event.start_time, event.end_time = datetime.strptime(start_time, "%Y%m%dT%H%M%S.%fZ"), datetime.strptime(end_time, "%Y%m%dT%H%M%S.%fZ")
+        event.start_time, event.end_time = datetime.strptime(item.pop("startTime"), "%Y%m%dT%H%M%S.%fZ"), datetime.strptime(item.pop("endTime"), "%Y%m%dT%H%M%S.%fZ")
         return event

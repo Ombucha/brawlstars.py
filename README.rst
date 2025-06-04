@@ -1,33 +1,42 @@
-brawlstars.py
-=============
+.. image:: banner.png
 
-.. image:: https://img.shields.io/github/license/Infiniticity/brawlstars.py
-    :target: https://github.com/Infiniticity/brawlstars.py/blob/main/LICENSE
+.. image:: https://img.shields.io/github/license/Ombucha/brawlstars.py
+    :target: https://github.com/Ombucha/brawlstars.py/blob/main/LICENSE
     :alt: license
-.. image:: https://img.shields.io/tokei/lines/github/Infiniticity/brawlstars.py
-    :target: https://github.com/Infiniticity/brawlstars.py/graphs/contributors
+.. image:: https://img.shields.io/tokei/lines/github/Ombucha/brawlstars.py
+    :target: https://github.com/Ombucha/brawlstars.py/graphs/contributors
     :alt: lines of code
 .. image:: https://img.shields.io/pypi/v/brawlstars.py
     :target: https://pypi.python.org/pypi/brawlstars.py
     :alt: PyPI version info
 .. image:: https://img.shields.io/pypi/pyversions/brawlstars.py
     :alt: Python version info
+.. image:: https://img.shields.io/github/workflow/status/Ombucha/brawlstars.py/CI
+    :target: https://github.com/Ombucha/brawlstars.py/actions
+    :alt: Build Status
 
+A modern, and easy-to-use Python wrapper for the official Brawl Stars API.
+
+Features
+--------
+
+- Full coverage of the Brawl Stars API
+- Simple, Pythonic interface
+- Type hints for better editor support
+- Built-in rate limit handling
+- Pagination and filtering helpers
+- Extensive documentation and examples
 
 Requirements
 ------------
 
-This module requires the following modules:
-
-* `requests <https://pypi.python.org/pypi/requests>`_
-
+- **Python 3.8 or higher**
+- `requests <https://pypi.python.org/pypi/requests>`_
 
 Installation
 ------------
 
-**Python 3.8 or higher is required.**
-
-To install the stable version, do the following:
+To install the latest stable version:
 
 .. code-block:: sh
 
@@ -37,50 +46,75 @@ To install the stable version, do the following:
     # Windows
     py -m pip install "brawlstars.py"
 
-
-To install the development version, do the following:
+To install the development version:
 
 .. code-block:: sh
 
-    $ git clone https://github.com/Infiniticity/brawlstars.py
+    git clone https://github.com/Ombucha/brawlstars.py
+    cd brawlstars.py
+    python3 -m pip install -e .
 
+Getting Started
+---------------
+
+1. **Get your API token** from https://developer.brawlstars.com/
+2. **Install the package** as shown above.
+3. **Start coding!**
 
 Quick Example
 -------------
 
-.. code-block:: py
+.. code-block:: python
 
     import brawlstars as bs
 
     client = bs.Client("token")
 
+    # Fetch player info
     player = client.get_player("#9PPUP2CJ")
-    print(player.trophies)
-    print(player.team_victories)
+    print(f"{player.name}: {player.trophies} trophies, {player.team_victories} team victories")
 
+    # Fetch club info and best player
     club = client.get_club(player.club.tag)
-    if club is not None:
+    if club:
         members = client.get_club_members(club.tag)
+        best_player = max(members, key=lambda m: m.trophies)
+        print(f"Best club member: {best_player.name} - {best_player.trophies} 🏆")
 
-        best_player = max(members, key = lambda member: member.trophies)
-        print(best_player.name, f"- {best_player.trophies} 🏆")
+    # Top 5 global players
+    for player in client.get_player_rankings("global", limit=5):
+        print(f"{player.rank}. {player.name} ({player.trophies} 🏆)")
 
-    player_rankings = client.get_player_rankings("global", limit = 5)
-    for player in player_rankings:
-        print(f"{player.rank}. {player.name}")
+    # Top 10 US players for a specific brawler
+    for player in client.get_brawler_rankings("us", 16000043, limit=10):
+        print(f"{player.rank}. {player.name} ({player.trophies} 🏆)")
 
-    brawler_rankings = client.get_brawler_rankings("us", 16000043, limit = 10)
-    for player in brawler_rankings:
-        print(f"{player.rank}. {player.name}")
-
+    # Recent battles
     battles = client.get_player_battlelog("#JGCCGY80")
-    print(battles[0].battle.mode)
+    print("Most recent battle mode:", battles[0].battle.mode)
 
-More examples can be viewed in the `examples <https://github.com/Infiniticity/brawlstars.py/tree/main/examples>`_ folder.
+Advanced Usage
+--------------
 
+- **Pagination:** Use `limit` and `after`/`before` parameters for large result sets.
+- **Error Handling:** All API errors raise `brawlstars.BrawlStarsException` or subclasses.
+- **Rate Limiting:** The client automatically handles rate limits and retries.
+- **Custom Session:** Pass your own `requests.Session` for advanced usage.
 
 Links
 -----
 
 - `Brawl Stars <https://brawlstars.com/>`_
+- `Official API <https://developer.brawlstars.com/>`_
 - `Documentation <https://brawlstars.readthedocs.io/>`_
+- `Examples <https://github.com/Ombucha/brawlstars.py/tree/main/examples>`_
+
+Contributing
+------------
+
+Contributions are welcome! Please see the `contributing guide <https://github.com/Ombucha/brawlstars.py/blob/main/CONTRIBUTING.md>`_.
+
+License
+-------
+
+This project is licensed under the MIT License. See the `LICENSE <https://github.com/Ombucha/brawlstars.py/blob/main/LICENSE>`_ file for details.

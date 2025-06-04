@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2022 Omkaar
+Copyright (c) 2025 Omkaar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +26,14 @@ SOFTWARE.
 from __future__ import annotations
 
 from time import sleep
-from typing import Callable, Optional
+from typing import Callable, Optional, List
 from threading import Thread
 
 from requests import Session
 
 from .endpoints import BASE_URL
 from .exceptions import UncallableError
-from .models import Battlelog, BrawlStarsObject, BrawlerList, ClubMemberList, EventList, Player, PlayerRanking, ClubRanking, PowerPlaySeasonList
+from .models import Battlelog, BrawlStarsObject, ClubMemberList, EventList, Player, PlayerRanking, ClubRanking, PowerPlaySeasonList
 from .utils import _fetch, _difference
 
 
@@ -106,7 +106,9 @@ class Client:
         :type tag: :class:`str`
         """
         data = _fetch(f"{BASE_URL}clubs/{tag}", self)
-        return BrawlStarsObject(data)
+        club = BrawlStarsObject(data)
+        club.members = ClubMemberList(data.pop("members", []))
+        return club
 
     def get_player_rankings(self, country: str, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> PlayerRanking:
         """
@@ -222,7 +224,7 @@ class Client:
         data = _fetch(f"{BASE_URL}rankings/{country}/powerplay/seasons/{season_id}", self, {"before": before, "after": after, "limit": limit})
         return PlayerRanking(data)
 
-    def get_brawlers(self, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> PlayerRanking:
+    def get_brawlers(self, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> List[BrawlStarsObject]:
         """
         Gets a list of brawlers.
 
@@ -240,7 +242,7 @@ class Client:
         if before and after:
             raise ValueError("both 'before' and 'after' cannot be provided.")
         data = _fetch(f"{BASE_URL}brawlers", self, {"before": before, "after": after, "limit": limit})
-        return BrawlerList(data)
+        return [BrawlStarsObject(item) for item in data["items"]]
 
     def get_brawler(self, brawler_id: str) -> BrawlStarsObject:
         """

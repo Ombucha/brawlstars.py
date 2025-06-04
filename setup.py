@@ -7,11 +7,11 @@ README = (HERE / "README.rst").read_text()
 
 setup(
     name = "brawlstars.py",
-    version = "1.1.0",
+    version = "1.2.0",
     description = "A basic API wrapper for Brawl Stars.",
     long_description = README,
     long_description_content_type = "text/x-rst",
-    url = "https://github.com/Infiniticity/brawlstars.py",
+    url = "https://github.com/Ombucha/brawlstars.py",
     author = "Omkaar",
     author_email = "omkaar.nerurkar@gmail.com",
     license = "MIT",
