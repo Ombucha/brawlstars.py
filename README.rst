@@ -1,19 +1,17 @@
-.. image:: banner.png
+.. image:: https://raw.githubusercontent.com/Ombucha/brawlstars.py/main/banner.png
 
-.. image:: https://img.shields.io/github/license/Ombucha/brawlstars.py
-    :target: https://github.com/Ombucha/brawlstars.py/blob/main/LICENSE
-    :alt: license
-.. image:: https://img.shields.io/tokei/lines/github/Ombucha/brawlstars.py
-    :target: https://github.com/Ombucha/brawlstars.py/graphs/contributors
-    :alt: lines of code
 .. image:: https://img.shields.io/pypi/v/brawlstars.py
     :target: https://pypi.python.org/pypi/brawlstars.py
-    :alt: PyPI version info
-.. image:: https://img.shields.io/pypi/pyversions/brawlstars.py
-    :alt: Python version info
-.. image:: https://img.shields.io/github/workflow/status/Ombucha/brawlstars.py/CI
-    :target: https://github.com/Ombucha/brawlstars.py/actions
-    :alt: Build Status
+    :alt: PyPI version
+.. image:: https://img.shields.io/pypi/dm/brawlstars.py
+    :target: https://pypi.python.org/pypi/brawlstars.py
+    :alt: PyPI downloads
+.. image:: https://sloc.xyz/github/Ombucha/brawlstars.py
+    :target: https://github.com/Ombucha/brawlstars.py/graphs/contributors
+    :alt: Lines of code
+.. image:: https://img.shields.io/github/repo-size/Ombucha/brawlstars.py
+    :target: https://github.com/Ombucha/brawlstars.py
+    :alt: Repository size
 
 A modern, and easy-to-use Python wrapper for the official Brawl Stars API.
 

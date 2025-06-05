@@ -7,7 +7,7 @@ README = (HERE / "README.rst").read_text()
 
 setup(
     name = "brawlstars.py",
-    version = "1.2.0",
+    version = "1.2.1",
     description = "A basic API wrapper for Brawl Stars.",
     long_description = README,
     long_description_content_type = "text/x-rst",

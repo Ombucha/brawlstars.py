@@ -10,6 +10,6 @@ on_rtd = os.environ.get("READTHEDOCS") == "True"
 project = "brawlstars.py"
 copyright = "2025, Omkaar"
 author = "Ombucha"
-release = "1.2.0"
+release = "1.2.1"
 
 extensions = ["sphinx.ext.autodoc"]
