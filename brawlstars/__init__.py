@@ -13,7 +13,7 @@ __title__ = "brawlstars"
 __author__ = "Omkaar"
 __license__ = "MIT"
 __copyright__ = "Copyright 2025 Omkaar"
-__version__ = "1.2.1"
+__version__ = "1.2.2"
 
 
 from .client import *
