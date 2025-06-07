@@ -27,7 +27,7 @@ SOFTWARE.
 
 import unittest
 from brawlstars.models import (
-    BrawlStarsObject, Battlelog, Player, ClubMemberList, PlayerRanking, ClubRanking, PowerPlaySeasonList, EventList
+    BrawlStarsObject, Battlelog, Player, ClubMemberList, PlayerRanking, ClubRanking, EventList
 )
 from datetime import datetime
 
@@ -77,15 +77,6 @@ class TestModels(unittest.TestCase):
         ranking = ClubRanking(data)
         club = ranking[0]
         self.assertIsInstance(club, BrawlStarsObject)
-
-    def test_powerplayseasonlist_datetime(self):
-        dt1 = "20250101T120000.000Z"
-        dt2 = "20250102T120000.000Z"
-        data = {"items": [{"startTime": dt1, "endTime": dt2}]}
-        seasons = PowerPlaySeasonList(data)
-        season = seasons[0]
-        self.assertIsInstance(season.start_time, datetime)
-        self.assertIsInstance(season.end_time, datetime)
 
     def test_eventlist_datetime(self):
         dt1 = "20250101T120000.000Z"
