@@ -62,9 +62,6 @@ Models
 .. autoclass:: brawlstars.PlayerRanking
     :members:
     
-.. autoclass:: brawlstars.PowerPlaySeasonList
-    :members:
-
 
 Exceptions
 ---------------

@@ -33,7 +33,7 @@ from requests import Session
 
 from .endpoints import BASE_URL
 from .exceptions import UncallableError
-from .models import Battlelog, BrawlStarsObject, ClubMemberList, EventList, Player, PlayerRanking, ClubRanking, PowerPlaySeasonList
+from .models import Battlelog, BrawlStarsObject, ClubMemberList, EventList, Player, PlayerRanking, ClubRanking
 from .utils import _fetch, _difference
 
 
@@ -175,54 +175,6 @@ class Client:
             raise ValueError("both 'before' and 'after' cannot be provided.")
         data = _fetch(f"{BASE_URL}rankings/{country}/clubs", self, {"before": before, "after": after, "limit": limit})
         return ClubRanking(data)
-
-    def get_powerplay_seasons(self, country: str, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> PowerPlaySeasonList:
-        """
-        Gets a list of Power Play seasons.
-
-        :param country: The two-letter country code, or 'global' for global rankings.
-        :type country: :class:`str`
-        :param before: The marker to return items before.
-        :type before: Optional[:class:`str`]
-        :param after: The marker to return items after.
-        :type after: Optional[:class:`str`]
-        :param limit: The maximum number of items to be returned.
-        :type limit: Optional[:class:`int`]
-
-        .. note::
-
-            If both ``before`` and ``after`` are provided, a ``ValueError`` is raised.
-        """
-
-        if before and after:
-            raise ValueError("both 'before' and 'after' cannot be provided.")
-        data = _fetch(f"{BASE_URL}rankings/{country}/powerplay/seasons", self, {"before": before, "after": after, "limit": limit})
-        return PowerPlaySeasonList(data)
-
-    def get_powerplay_rankings(self, country: str, season_id: str, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> PlayerRanking:
-        """
-        Gets global Power Play rankings or those for a specific country.
-
-        :param country: The two-letter country code, or 'global' for global rankings.
-        :type country: :class:`str`
-        :param season_id: The identifier of the season, or 'latest' for the latest season.
-        :type season_id: :class:`str`
-        :param before: The marker to return items before.
-        :type before: Optional[:class:`str`]
-        :param after: The marker to return items after.
-        :type after: Optional[:class:`str`]
-        :param limit: The maximum number of items to be returned.
-        :type limit: Optional[:class:`int`]
-
-        .. note::
-
-            If both ``before`` and ``after`` are provided, a ``ValueError`` is raised.
-        """
-
-        if before and after:
-            raise ValueError("both 'before' and 'after' cannot be provided.")
-        data = _fetch(f"{BASE_URL}rankings/{country}/powerplay/seasons/{season_id}", self, {"before": before, "after": after, "limit": limit})
-        return PlayerRanking(data)
 
     def get_brawlers(self, *, before: Optional[str] = None, after: Optional[str] = None, limit: Optional[int] = None) -> List[BrawlStarsObject]:
         """

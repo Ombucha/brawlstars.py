@@ -155,22 +155,6 @@ class ClubRanking:
         return BrawlStarsObject(self._data["items"][index])
 
 
-class PowerPlaySeasonList:
-
-    """
-    A class that represents a list of Power Play seasons.
-    """
-
-    def __init__(self, _data: dict) -> None:
-        self._data = _data
-
-    def __getitem__(self, index: int) -> BrawlStarsObject:
-        item = self._data["items"][index]
-        season = BrawlStarsObject(item)
-        season.start_time, season.end_time = datetime.strptime(item.pop("startTime"), "%Y%m%dT%H%M%S.%fZ"), datetime.strptime(item.pop("endTime"), "%Y%m%dT%H%M%S.%fZ")
-        return season
-
-
 class EventList:
 
     """
