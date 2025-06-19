@@ -3,13 +3,13 @@
 .. image:: https://img.shields.io/pypi/v/brawlstars.py
     :target: https://pypi.python.org/pypi/brawlstars.py
     :alt: PyPI version
-.. image:: https://img.shields.io/pypi/dm/brawlstars.py
+.. image:: https://static.pepy.tech/personalized-badge/brawlstars.py?period=total&left_text=downloads&left_color=grey&right_color=red
     :target: https://pypi.python.org/pypi/brawlstars.py
     :alt: PyPI downloads
-.. image:: https://sloc.xyz/github/Ombucha/brawlstars.py
+.. image:: https://sloc.xyz/github/Ombucha/brawlstars.py?lower=True
     :target: https://github.com/Ombucha/brawlstars.py/graphs/contributors
     :alt: Lines of code
-.. image:: https://img.shields.io/github/repo-size/Ombucha/brawlstars.py
+.. image:: https://img.shields.io/github/repo-size/Ombucha/brawlstars.py?color=yellow
     :target: https://github.com/Ombucha/brawlstars.py
     :alt: Repository size
 
